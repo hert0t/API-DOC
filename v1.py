@@ -78,6 +78,19 @@ class BEAPI():
         if resp["status"] != 200: raise Exception (resp["reason"])
         return resp
 
+    def lineAppnameRandom(self, osname):
+        #["android","ios","chromeos","desktopmac","desktopwin","iosipad"]
+        params = {"osname": osname, "apikey": self.apikey}
+        resp = self.http.get(self.host+"/lineappname_random",params=params).json()
+        if resp["status"] != 200: raise Exception (resp["reason"])
+        return resp
+
+    def linePrimary2Secondary(self, appName, authToken):
+        params = {"appname": appName, "authtoken": authToken, "apikey": self.apikey}
+        resp = self.http.get(self.host+"/lineprimary2secondary",params=params).json()
+        if resp["status"] != 200: raise Exception (resp["reason"])
+        return resp
+
     def lineGetQr(self, appName, cert=None, country="JP"):
         #['HK', 'IN', 'ID', 'JP', 'KR', 'SA', 'SG', 'TH', 'US', 'MY']
         params = {"appname": appName, "country": country, "apikey": self.apikey}
@@ -95,6 +108,20 @@ class BEAPI():
     def lineGetQrAuth(self, session):
         params = {"apikey": self.apikey}
         resp = self.http.get(self.host+"/lineqr/auth/"+session,params=params).json()
+        if resp["status"] != 200: raise Exception (resp["reason"])
+        return resp
+
+    def nineGagFresh(self, category):
+        #['funny', 'among-us', 'animals', 'anime-manga', 'animewaifu', 'animewallpaper', 'apexlegends', 'ask9gag', 'awesome', 'car', 'comic-webtoon', 'coronavirus', 'cosplay', 'countryballs', 'home-living', 'crappydesign', 'cyberpunk2077', 'drawing-diy-crafts', 'rate-my-outfit', 'food-drinks', 'football', 'fortnite', 'got', 'gaming', 'gif', 'girl', 'girlcelebrity', 'guy', 'history', 'horror', 'kpop', 'timely', 'leagueoflegends', 'lego', 'superhero', 'meme', 'movie-tv', 'music', 'basketball', 'nsfw', 'overwatch', 'pcmr', 'pokemon', 'politics', 'pubg', 'random', 'relationship', 'savage', 'satisfying', 'science-tech', 'sport', 'starwars', 'school', 'travel-photography', 'video', 'wallpaper', 'warhammer', 'wholesome', 'wtf', 'darkhumor', 'funny', 'nsfw', 'girl', 'wtf', 'anime-manga', 'random', 'animals', 'animewaifu', 'awesome', 'car', 'comic-webtoon', 'cosplay', 'cyberpunk2077', 'gaming', 'gif', 'girlcelebrity', 'leagueoflegends', 'meme', 'politics', 'relationship', 'savage', 'video', 'algeria', 'argentina', 'australia', 'austria', 'bosniaherzegovina', 'bahrain', 'belgium', 'bolivia', 'brazil', 'bulgaria', 'canada', 'chile', 'colombia', 'costarica', 'croatia', 'cyprus', 'czechia', 'denmark', 'dominicanrepublic', 'ecuador', 'egypt', 'estonia', 'finland', 'france', 'georgia', 'germany', 'ghana', 'greece', 'guatemala', 'hongkong', 'hungary', 'iceland', 'india', 'indonesia', 'iraq', 'ireland', 'israel', 'italy', 'japan', 'jordan', 'kenya', 'kuwait', 'latvia', 'lebanon', 'lithuania', 'luxembourg', 'malaysia', 'mexico', 'montenegro', 'morocco', 'nepal', 'netherlands', 'newzealand', 'nigeria', 'norway', 'oman', 'pakistan', 'peru', 'philippines', 'poland', 'portugal', 'puertorico', 'qatar', 'romania', 'russia', 'saudiarabia', 'senegal', 'serbia', 'singapore', 'slovakia', 'slovenia', 'southafrica', 'southkorea', 'spain', 'srilanka', 'sweden', 'switzerland', 'taiwan', 'tanzania', 'thailand', 'tunisia', 'turkey', 'uae', 'usa', 'ukraine', 'uk', 'uruguay', 'vietnam', 'yemen', 'zimbabwe']
+        params = {"apikey": self.apikey, "category": category}
+        resp = self.http.get(self.host+"/9gag-fresh",params=params).json()
+        if resp["status"] != 200: raise Exception (resp["reason"])
+        return resp
+
+    def nineGagHot(self, category):
+        #['funny', 'among-us', 'animals', 'anime-manga', 'animewaifu', 'animewallpaper', 'apexlegends', 'ask9gag', 'awesome', 'car', 'comic-webtoon', 'coronavirus', 'cosplay', 'countryballs', 'home-living', 'crappydesign', 'cyberpunk2077', 'drawing-diy-crafts', 'rate-my-outfit', 'food-drinks', 'football', 'fortnite', 'got', 'gaming', 'gif', 'girl', 'girlcelebrity', 'guy', 'history', 'horror', 'kpop', 'timely', 'leagueoflegends', 'lego', 'superhero', 'meme', 'movie-tv', 'music', 'basketball', 'nsfw', 'overwatch', 'pcmr', 'pokemon', 'politics', 'pubg', 'random', 'relationship', 'savage', 'satisfying', 'science-tech', 'sport', 'starwars', 'school', 'travel-photography', 'video', 'wallpaper', 'warhammer', 'wholesome', 'wtf', 'darkhumor', 'funny', 'nsfw', 'girl', 'wtf', 'anime-manga', 'random', 'animals', 'animewaifu', 'awesome', 'car', 'comic-webtoon', 'cosplay', 'cyberpunk2077', 'gaming', 'gif', 'girlcelebrity', 'leagueoflegends', 'meme', 'politics', 'relationship', 'savage', 'video', 'algeria', 'argentina', 'australia', 'austria', 'bosniaherzegovina', 'bahrain', 'belgium', 'bolivia', 'brazil', 'bulgaria', 'canada', 'chile', 'colombia', 'costarica', 'croatia', 'cyprus', 'czechia', 'denmark', 'dominicanrepublic', 'ecuador', 'egypt', 'estonia', 'finland', 'france', 'georgia', 'germany', 'ghana', 'greece', 'guatemala', 'hongkong', 'hungary', 'iceland', 'india', 'indonesia', 'iraq', 'ireland', 'israel', 'italy', 'japan', 'jordan', 'kenya', 'kuwait', 'latvia', 'lebanon', 'lithuania', 'luxembourg', 'malaysia', 'mexico', 'montenegro', 'morocco', 'nepal', 'netherlands', 'newzealand', 'nigeria', 'norway', 'oman', 'pakistan', 'peru', 'philippines', 'poland', 'portugal', 'puertorico', 'qatar', 'romania', 'russia', 'saudiarabia', 'senegal', 'serbia', 'singapore', 'slovakia', 'slovenia', 'southafrica', 'southkorea', 'spain', 'srilanka', 'sweden', 'switzerland', 'taiwan', 'tanzania', 'thailand', 'tunisia', 'turkey', 'uae', 'usa', 'ukraine', 'uk', 'uruguay', 'vietnam', 'yemen', 'zimbabwe']
+        params = {"apikey": self.apikey, "category": category}
+        resp = self.http.get(self.host+"/9gag-hot",params=params).json()
         if resp["status"] != 200: raise Exception (resp["reason"])
         return resp
 
@@ -129,9 +156,21 @@ class BEAPI():
         if resp["status"] != 200: raise Exception (resp["reason"])
         return resp
 
+    def tiktokPost(self, url):
+        params = {"url": url, "apikey": self.apikey}
+        resp = self.http.get(self.host+"/tiktok",params=params).json()
+        if resp["status"] != 200: raise Exception (resp["reason"])
+        return resp
+    
     def tiktokPostV2(self, url):
         params = {"url": url, "apikey": self.apikey}
         resp = self.http.get(self.host+"/musicallydown",params=params).json()
         if resp["status"] != 200: raise Exception (resp["reason"])
         return resp
 
+    def trackingResi(self, resi, courier):
+        #['pos', 'wahana', 'jnt', 'sap', 'sicepat', 'jet', 'dse', 'first', 'ninja', 'lion', 'idl', 'rex', 'ide', 'sentral']
+        params = {"resi": resi, "courier": courier, "apikey": self.apikey}
+        resp = self.http.get(self.host+"/track-resi",params=params).json()
+        if resp["status"] != 200: raise Exception (resp["reason"])
+        return resp
