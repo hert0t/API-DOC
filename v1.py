@@ -174,3 +174,15 @@ class BEAPI():
         resp = self.http.get(self.host+"/track-resi",params=params).json()
         if resp["status"] != 200: raise Exception (resp["reason"])
         return resp
+    
+    def youtubeSearch(self, search):
+        params = {"search": search, "apikey": self.apikey}
+        resp = self.http.get(self.host+"/youtube",params=params).json()
+        if resp["status"] != 200: raise Exception (resp["reason"])
+        return resp
+
+    def youtubeUrl(self, url):
+        params = {"url": url, "apikey": self.apikey}
+        resp = self.http.get(self.host+"/youtube",params=params).json()
+        if resp["status"] != 200: raise Exception (resp["reason"])
+        return resp  
