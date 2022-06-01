@@ -23,6 +23,13 @@ class BEAPI():
         resp = self.http.get(self.host+"/brainly",params=params).json()
         if resp["status"] != 200: raise Exception (resp["reason"])
         return resp
+    
+    def bitly(self, url):
+        data = {"url": url}
+        params = {"apikey": self.apikey}
+        resp = self.http.post(self.host+"/bitly",data=data,params=params).json()
+        if resp["status"] != 200: raise Exception (resp["reason"])
+        return resp
 
     def gifSearch(self, search):
         params = {"search": search, "apikey": self.apikey}
