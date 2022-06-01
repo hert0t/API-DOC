@@ -34,6 +34,14 @@ res = api.brainlySearch('kenapa bumi bulat')
 print(res)
 ```
 
+- BITLY (SHORTLINK)
+```PY
+from v1 import BEAPI
+api = BEAPI("apikey_here")
+res = api.bitly('https://google.com')
+print(res)
+```
+
 - GIFSEARCH
 ```PY
 from v1 import BEAPI
