@@ -152,6 +152,20 @@ res = api.linePrimary2Secondary("IOSIPAD\t10.5.2\tiPhone 8\t11.2.5","your_authto
 print(res)
 ```
 
+- LINEREGISTER
+```PY
+from v2 import BEAPI
+api = BEAPI("apikey_here")
+phone = input("Phone Number: ")
+# ['HK', 'IN', 'ID', 'JP', 'KR', 'SA', 'SG', 'TH', 'US', 'MY']
+region = input("Phone Region: ")
+session = api.lineRegister(phone, region)["result"]["session"]
+pinCode = input("Pincode: ")
+register = api.lineRegisterPincode(session,pinCode)
+print(register)
+# don't forget disable/remove e2ee
+```
+
 - 9GAG
 ```PY
 from v1 import BEAPI
